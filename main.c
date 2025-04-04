@@ -32,8 +32,16 @@ int main(int argc, char **argv) {
       }
     }
   }
+  serialize(start);
   fclose(fp);
 
+  /* queue q = {};
+  enqueue(&q, start);
+  dump_list(q.data);
+  fprintf(stderr, "%ld\n", serialize(dequeue(&q)));
+  enqueue(&q, start);
+  dump_list(q.data);
+  dequeue(&q);*/
   int output = number_of_moves(start);
   if (output != expected) {
     fprintf(stderr, "Expected %d moves, got %d\n", expected, output);

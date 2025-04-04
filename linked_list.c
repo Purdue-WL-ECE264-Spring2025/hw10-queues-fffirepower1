@@ -10,9 +10,9 @@ struct list_node *new_node(size_t value) {
 }
 
 void insert_at_head(struct linked_list *list, size_t value) {
-  struct list_node * newNode = new_node(value);     //create new independent node with value
-  newNode -> next = list -> head;     //set newNode.next to previous list such that independent node is the new head
-  list -> head = newNode;   //set list to newNode
+  struct list_node *n = new_node(value);
+  n -> next = list -> head;
+  list -> head = n;
 }
 
 void insert_at_tail(struct linked_list *list, size_t value) {
@@ -36,19 +36,19 @@ size_t remove_from_head(struct linked_list *list) {
 }
 
 size_t remove_from_tail(struct linked_list *list) {
-  struct list_node * currNode = list -> head;
+  struct list_node *currNode = list -> head;
   struct list_node *nextNode = currNode -> next;
   size_t returnVal;
 
   if (nextNode == NULL){      //if only 1 val in list, nextNode is null
-    fprintf(stderr, "emptr\n");
     returnVal = currNode -> value;
+    list -> head = NULL;
     free(currNode);   //thus get head's value and return and remove
     return returnVal;
   }
 
-  while (currNode -> next != NULL){
-    fprintf(stderr, "doing thignsg\n");
+  while (nextNode -> next != NULL){       //CURRENTLY INFINITELY LOOPING, FIXXXX
+    //fprintf(stderr, "doing thignsg\n");
     currNode = currNode -> next;    //find last node
     nextNode = nextNode -> next;    //nextNode = last node, currNode = nextNode -1
   }
@@ -68,10 +68,18 @@ void free_list(struct linked_list list) {
 }
 
 // Utility function to help you debugging, do not modify
-void dump_list(FILE *fp, struct linked_list list) {
+void dump_list(struct linked_list list) {
+  fprintf(stderr, "[ ");
+  for (struct list_node *cur = list.head; cur != NULL; cur = cur->next) {
+    fprintf(stderr, "%zu ", cur->value);
+  }
+  fprintf(stderr, "]\n");
+}
+
+/*void dump_list(FILE *fp, struct linked_list list) {
   fprintf(fp, "[ ");
   for (struct list_node *cur = list.head; cur != NULL; cur = cur->next) {
     fprintf(fp, "%zu ", cur->value);
   }
   fprintf(fp, "]\n");
-}
+}*/

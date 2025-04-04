@@ -18,7 +18,8 @@ void insert_at_tail(struct linked_list *list, size_t value);
 size_t remove_from_head(struct linked_list *list);
 size_t remove_from_tail(struct linked_list *list);
 
-void dump_list(FILE *fp, struct linked_list list);
+void dump_list(struct linked_list list);
+//void dump_list(FILE *fp, struct linked_list list);
 
 void free_list(struct linked_list list);
 
