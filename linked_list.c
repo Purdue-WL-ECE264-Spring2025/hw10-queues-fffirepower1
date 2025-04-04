@@ -41,13 +41,14 @@ size_t remove_from_tail(struct linked_list *list) {
   size_t returnVal;
 
   if (nextNode == NULL){      //if only 1 val in list, nextNode is null
+    fprintf(stderr, "emptr\n");
     returnVal = currNode -> value;
     free(currNode);   //thus get head's value and return and remove
-    free(list);
     return returnVal;
   }
 
-  while (nextNode -> next != NULL){
+  while (currNode -> next != NULL){
+    fprintf(stderr, "doing thignsg\n");
     currNode = currNode -> next;    //find last node
     nextNode = nextNode -> next;    //nextNode = last node, currNode = nextNode -1
   }

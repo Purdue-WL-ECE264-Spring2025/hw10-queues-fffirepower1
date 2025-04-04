@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
       if (value == 0) {
         start.empty_row = i;
         start.empty_col = j;
+        //fprintf(stderr, "%d %d\n", (int)i, (int)j);
       }
     }
   }

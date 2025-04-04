@@ -12,5 +12,8 @@ clean:
 	/bin/rm -rf *.o
 	/bin/rm -rf $(APP)
 
+test: hw10
+	./hw10 testcases/2.txt > output2.txt
+
 %.o: %.c $(HEADERS)
 	$(CC) -c $< -o $@ $(CFLAGS)
